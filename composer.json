@@ -29,9 +29,13 @@
         "mockery/mockery" : "^1.4",
         "phpunit/phpunit": "^9.1",
         "psalm/plugin-laravel": "^1.4",
+        "spatie/laravel-enum": "^2.2",
         "spatie/phpunit-snapshot-assertions": "^4.2",
         "vimeo/psalm": "^4.2",
         "ext-redis" : "*"
+    },
+    "suggest": {
+        "spatie/laravel-enum": "Needed when using the SpatieEnumCast class"
     },
     "autoload": {
         "psr-4": {

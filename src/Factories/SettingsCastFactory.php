@@ -56,7 +56,7 @@ class SettingsCastFactory
         $reflectedType = self::getLocalCastReflectedType($type);
 
         if ($reflectedType) {
-            array_push($arguments, $reflectedType);
+            $arguments[] = $reflectedType;
         }
 
         return new $castClass(...$arguments);

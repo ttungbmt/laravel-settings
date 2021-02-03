@@ -8,8 +8,10 @@ use Spatie\LaravelSettings\Factories\SettingsCastFactory;
 use Spatie\LaravelSettings\SettingsCasts\ArraySettingsCast;
 use Spatie\LaravelSettings\SettingsCasts\DateTimeInterfaceCast;
 use Spatie\LaravelSettings\SettingsCasts\DtoCast;
+use Spatie\LaravelSettings\SettingsCasts\SpatieEnumCast;
 use Spatie\LaravelSettings\Tests\TestCase;
 use Spatie\LaravelSettings\Tests\TestClasses\DummyDto;
+use Spatie\LaravelSettings\Tests\TestClasses\DummyEnum;
 
 class SettingsCastFactoryTest extends TestCase
 {
@@ -159,6 +161,24 @@ class SettingsCastFactoryTest extends TestCase
         ]);
 
         $this->assertEquals(new DateTimeInterfaceCast(DateTime::class), $cast);
+    }
+
+    /** @test */
+    public function it_can_create_a_local_spatie_enum_cast_without_arguments()
+    {
+        $this->withoutGlobalCasts();
+
+        $fake = new class {
+            public DummyEnum $type;
+        };
+
+        $reflectionProperty = new ReflectionProperty($fake, 'type');
+
+        $cast = SettingsCastFactory::resolve($reflectionProperty, [
+            'type' => SpatieEnumCast::class,
+        ]);
+
+        $this->assertEquals(new SpatieEnumCast(DummyEnum::class), $cast);
     }
 
     /** @test */
