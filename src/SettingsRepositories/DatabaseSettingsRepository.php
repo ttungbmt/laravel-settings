@@ -61,7 +61,7 @@ class DatabaseSettingsRepository implements SettingsRepository
         $this->propertyModel::on($this->connection)->create([
             'group' => $group,
             'name' => $name,
-            'payload' => json_encode($payload),
+            'payload' => json_encode($payload, JSON_UNESCAPED_UNICODE),
             'locked' => false,
         ]);
     }
